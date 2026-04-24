@@ -18,9 +18,13 @@ void ABasicPlayerController::OnPossess(APawn* InPawn)
             Subsystem->ClearAllMappings();
             for (const auto& IMC : IMCArray)
             {
-                if (IMC.LoadSynchronous()->IsValidLowLevel())
+                if (!IMC.IsNull())
                 {
-                    Subsystem->AddMappingContext(IMC.LoadSynchronous(), 0);
+                    UInputMappingContext* LoadedIMC = IMC.LoadSynchronous();
+                    if (LoadedIMC)
+                    {
+                        Subsystem->AddMappingContext(LoadedIMC, 0);
+                    }
                 }
             }
         }
