@@ -58,7 +58,7 @@ public:
 
 	void Lean(const FInputActionValue& InValue);
 	
-	void CustomScale(const FInputActionValue& InValue);
+	void BigHead(const FInputActionValue& InValue);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Stat")
 	float TargetAngle;
