@@ -38,6 +38,10 @@ void UBasicAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 
 		Direction = UKismetAnimationLibrary::CalculateDirection(Character->GetVelocity(), Character->GetActorRotation());
 
-		LeanAngle = Character->LeanAngle;
+		TargetLeanAngle = Character->TargetAngle;		
+		CurrentLeanAngle = FMath::FInterpTo(CurrentLeanAngle, TargetLeanAngle, DeltaSeconds, 5.0f);
+		
+		TargetScale = Character->TargetScale;
+		CurrentScale = FMath::Clamp(FMath::FInterpTo(CurrentScale, TargetScale, DeltaSeconds, 1.0f), 1.0f, 5.0f);
 	}
 }

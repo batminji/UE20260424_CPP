@@ -7,6 +7,7 @@
 #include "InputAction.h"
 #include "EnhancedInputComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "../UE20260424_CPP.h"
 
 // Sets default values
 ABasicCharacter::ABasicCharacter()
@@ -49,6 +50,9 @@ void ABasicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		EIC->BindAction(IA_Jump, ETriggerEvent::Completed, this, &ABasicCharacter::StopJumping);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Canceled, this, &ABasicCharacter::StopJumping);
 		EIC->BindAction(IA_Lean, ETriggerEvent::Triggered, this, &ABasicCharacter::Lean);
+		EIC->BindAction(IA_Lean, ETriggerEvent::Completed, this, &ABasicCharacter::Lean);
+		EIC->BindAction(IA_Scale, ETriggerEvent::Triggered, this, &ABasicCharacter::CustomScale);
+		EIC->BindAction(IA_Scale, ETriggerEvent::Completed, this, &ABasicCharacter::CustomScale);
 	}
 }
 
@@ -76,6 +80,12 @@ void ABasicCharacter::Lean(const FInputActionValue& InValue)
 {
 	float Direction = InValue.Get<float>();
 
-	LeanAngle = 30.0f * Direction;
+	TargetAngle = 30.0f * Direction;
+}
+
+void ABasicCharacter::CustomScale(const FInputActionValue& InValue)
+{
+	float Scale = InValue.Get<float>();
+	TargetScale = FMath::Clamp(5.0f * Scale, 1.0f, 5.0f);
 }
 

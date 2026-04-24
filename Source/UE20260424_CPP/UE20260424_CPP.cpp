@@ -4,3 +4,5 @@
 #include "Modules/ModuleManager.h"
 
 IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, UE20260424_CPP, "UE20260424_CPP" );
+
+DEFINE_LOG_CATEGORY(LogMinji);

@@ -26,5 +26,14 @@ public:
 	float Direction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
-	float LeanAngle = -30.0f;
+	float TargetLeanAngle = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float CurrentLeanAngle = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float TargetScale = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float CurrentScale = 1.0f;
 };

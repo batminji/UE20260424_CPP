@@ -49,12 +49,20 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> IA_Lean;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> IA_Scale;
+
 	void Move(const FInputActionValue& InValue);
 
 	void Look(const FInputActionValue& InValue);
 
 	void Lean(const FInputActionValue& InValue);
+	
+	void CustomScale(const FInputActionValue& InValue);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Stat")
-	float LeanAngle;
+	float TargetAngle;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Stat")
+	float TargetScale = 1.0f;
 };
