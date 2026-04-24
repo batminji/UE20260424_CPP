@@ -15,8 +15,8 @@ class UE20260424_CPP_API UBasicAnimInstance : public UAnimInstance
 	GENERATED_BODY()
 
 public:
-	virtual void NativeInitializeAnimation() override;
-	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+	// virtual void NativeInitializeAnimation() override;
+	// virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 	virtual void NativeThreadSafeUpdateAnimation(float DeltaSeconds) override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
@@ -24,4 +24,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	float Direction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float LeanAngle = -30.0f;
 };

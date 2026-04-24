@@ -48,6 +48,7 @@ void ABasicCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		EIC->BindAction(IA_Jump, ETriggerEvent::Triggered, this, &ABasicCharacter::Jump);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Completed, this, &ABasicCharacter::StopJumping);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Canceled, this, &ABasicCharacter::StopJumping);
+		EIC->BindAction(IA_Lean, ETriggerEvent::Triggered, this, &ABasicCharacter::Lean);
 	}
 }
 
@@ -69,5 +70,12 @@ void ABasicCharacter::Look(const FInputActionValue& InValue)
 
 	AddControllerPitchInput(LookDirection.Y);
 	AddControllerYawInput(LookDirection.X);
+}
+
+void ABasicCharacter::Lean(const FInputActionValue& InValue)
+{
+	float Direction = InValue.Get<float>();
+
+	LeanAngle = 30.0f * Direction;
 }
 

@@ -46,7 +46,15 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> IA_Jump;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> IA_Lean;
+
 	void Move(const FInputActionValue& InValue);
 
 	void Look(const FInputActionValue& InValue);
+
+	void Lean(const FInputActionValue& InValue);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Stat")
+	float LeanAngle;
 };

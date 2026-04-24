@@ -5,25 +5,39 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "KismetAnimationLibrary.h"
+#include "BasicCharacter.h"
 
 
-void UBasicAnimInstance::NativeInitializeAnimation()
+//void UBasicAnimInstance::NativeInitializeAnimation()
+//{
+//}
+//
+//void UBasicAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
+//{
+//	Super::NativeInitializeAnimation();
+//
+//	ABasicCharacter* Character = Cast<ABasicCharacter>(TryGetPawnOwner());
+//	if (Character)
+//	{
+//		Speed = Character->GetCharacterMovement()->Velocity.Size2D();
+//
+//		Direction = UKismetAnimationLibrary::CalculateDirection(Character->GetVelocity(), Character->GetActorRotation());
+//
+//		LeanAngle = Character->LeanAngle;
+//	}
+//}
+
+void UBasicAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 {
-}
+	Super::NativeThreadSafeUpdateAnimation(DeltaSeconds);
 
-void UBasicAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
-{
-	Super::NativeInitializeAnimation();
-
-	ACharacter* Character = Cast<ACharacter>(TryGetPawnOwner());
+	ABasicCharacter* Character = Cast<ABasicCharacter>(TryGetPawnOwner());
 	if (Character)
 	{
 		Speed = Character->GetCharacterMovement()->Velocity.Size2D();
 
 		Direction = UKismetAnimationLibrary::CalculateDirection(Character->GetVelocity(), Character->GetActorRotation());
-	}
-}
 
-void UBasicAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
-{
+		LeanAngle = Character->LeanAngle;
+	}
 }
