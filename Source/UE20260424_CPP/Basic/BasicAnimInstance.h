@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "BasicCharacter.h"
 #include "BasicAnimInstance.generated.h"
 
 /**
@@ -42,4 +43,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	float AimYaw = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	EPoseState PoseState = EPoseState::Stand;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	uint8 bIsWeaponEquipped : 1;
 };

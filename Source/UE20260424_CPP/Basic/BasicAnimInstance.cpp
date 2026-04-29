@@ -5,7 +5,6 @@
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "KismetAnimationLibrary.h"
-#include "BasicCharacter.h"
 
 
 //void UBasicAnimInstance::NativeInitializeAnimation()
@@ -47,5 +46,8 @@ void UBasicAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 		FRotator AimOffset = Character->GetAimOffset();
 		AimPitch = AimOffset.Pitch;
 		AimYaw = AimOffset.Yaw;
+
+		PoseState = Character->PoseState;
+		bIsWeaponEquipped = Character->bIsWeaponEquipped;
 	}
 }

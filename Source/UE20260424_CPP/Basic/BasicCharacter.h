@@ -11,6 +11,14 @@ class USpringArmComponent;
 class UCameraComponent;
 class UInputAction;
 
+UENUM(BlueprintType)
+enum class EPoseState : uint8
+{
+	Stand = 0		UMETA(DisplayName = "Stand"),
+	Crouch = 1		UMETA(DisplayName = "Crouch"),
+	Prone = 2		UMETA(DisplayName = "Prone")
+};
+
 UCLASS()
 class UE20260424_CPP_API ABasicCharacter : public ACharacter
 {
@@ -67,4 +75,10 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Stat")
 	float TargetScale = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	EPoseState PoseState = EPoseState::Stand;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	uint8 bIsWeaponEquipped : 1;
 };
