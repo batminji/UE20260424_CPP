@@ -89,3 +89,11 @@ void ABasicCharacter::BigHead(const FInputActionValue& InValue)
 	TargetScale = FMath::Clamp(5.0f * Scale, 1.0f, 5.0f);
 }
 
+FRotator ABasicCharacter::GetAimOffset() const
+{
+	const FVector AimDirectionWorldSpace = GetBaseAimRotation().Vector();
+	const FVector AimDirectionLocalSpace = ActorToWorld().InverseTransformVectorNoScale(AimDirectionWorldSpace);	
+	const FRotator AimRotationLocalSpace = AimDirectionLocalSpace.Rotation();
+
+	return AimRotationLocalSpace;
+}

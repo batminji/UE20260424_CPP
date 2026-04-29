@@ -60,6 +60,8 @@ public:
 	
 	void BigHead(const FInputActionValue& InValue);
 
+	FRotator GetAimOffset() const;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Stat")
 	float TargetAngle;
 

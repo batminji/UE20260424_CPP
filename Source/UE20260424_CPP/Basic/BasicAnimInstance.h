@@ -36,4 +36,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	float CurrentScale = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float AimPitch = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	float AimYaw = 0.0f;
 };
