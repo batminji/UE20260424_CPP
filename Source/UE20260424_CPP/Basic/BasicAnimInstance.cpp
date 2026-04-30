@@ -51,3 +51,8 @@ void UBasicAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 		bIsWeaponEquipped = Character->bIsWeaponEquipped;
 	}
 }
+
+// void UBasicAnimInstance::AnimNotify_CheckCombo_CPP()
+// {
+// 	UE_LOG(LogTemp, Warning, TEXT("AnimNotify_CheckCombo_CPP called!"));
+// }

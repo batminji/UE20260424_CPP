@@ -49,4 +49,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
 	uint8 bIsWeaponEquipped : 1;
+
+	// UFUNCTION(BlueprintCallable)
+	// void AnimNotify_CheckCombo_CPP();
 };
