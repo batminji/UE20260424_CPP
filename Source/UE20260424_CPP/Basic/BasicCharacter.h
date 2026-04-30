@@ -81,4 +81,27 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
 	uint8 bIsWeaponEquipped : 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	uint8 ComboCount = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	uint8 PlayingComboIndex = 0;
+
+	UFUNCTION(BlueprintCallable)
+	void CheckCombo();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim")
+	TObjectPtr<UAnimMontage> ComboMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combo")
+	uint8 bIsAttacking : 1;
+
+	UFUNCTION(BlueprintCallable)
+	void ComboAttack();
+
+	UFUNCTION()
+	void OnComboMontageEnded(UAnimMontage* Montage, bool bInterrupted);
+
+	void PlayComboMonstage();
 };

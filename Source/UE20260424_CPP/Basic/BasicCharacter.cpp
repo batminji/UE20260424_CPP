@@ -97,3 +97,60 @@ FRotator ABasicCharacter::GetAimOffset() const
 
 	return AimRotationLocalSpace;
 }
+
+void ABasicCharacter::CheckCombo()
+{
+	if(PlayingComboIndex != ComboCount)
+	{
+		PlayComboMonstage();
+
+		PlayingComboIndex = ComboCount;
+	}
+}
+
+void ABasicCharacter::ComboAttack()
+{
+	if (!bIsAttacking)
+	{
+		ComboCount++;
+
+		PlayComboMonstage();
+
+		bIsAttacking = true;
+
+		PlayingComboIndex = ComboCount;		
+	}
+	else if(bIsAttacking && PlayingComboIndex == ComboCount)
+	{
+		ComboCount++;
+	}
+}
+
+void ABasicCharacter::PlayComboMonstage()
+{
+	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
+	{
+		FString SectionName = FString::Printf(TEXT("Attack0%d"), ComboCount);
+
+		float MontageLength = PlayAnimMontage(ComboMontage, 1.0f, FName(*SectionName));
+
+		if (MontageLength > 0.0f)
+		{
+			FOnMontageEnded EndDelegate;
+
+			EndDelegate.BindUObject(this, &ABasicCharacter::OnComboMontageEnded);
+
+			AnimInstance->Montage_SetEndDelegate(EndDelegate);
+		}
+	}
+}
+
+void ABasicCharacter::OnComboMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (!bInterrupted)
+	{
+		bIsAttacking = false;
+		PlayingComboIndex = 0;
+		ComboCount = 0;
+	}
+}
